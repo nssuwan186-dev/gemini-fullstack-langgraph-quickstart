@@ -12,12 +12,13 @@ import operator
 
 class OverallState(TypedDict):
     messages: Annotated[list, add_messages]
-    task_queue: list # รายการงานย่อยที่ต้องทำต่อกัน
+    task_queue: list # List of sub-tasks to be executed sequentially
     current_step_index: int
     current_worker: str
-    last_output: str # ผลลัพธ์จากขั้นตอนล่าสุดเพื่อส่งต่อ
+    last_output: str # Output from the last step to be passed on
     verification_passed: bool
-    error_feedback: str # คอมเมนต์จาก Verifier ถ้างานผิดพลาด
+    error_feedback: str # Feedback from the Verifier if the task fails
+
     search_query: Annotated[list, operator.add]
     web_research_result: Annotated[list, operator.add]
     sources_gathered: Annotated[list, operator.add]
